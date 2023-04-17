@@ -11,15 +11,18 @@ import java.util.*;
 public class clothesGroup extends Clothes{
     public ArrayList clothesEditor(){
         
-        ArrayList e = clothesSorter();
+        ArrayList extraFactors = new ArrayList();
         String[] d = Weather.filterReport();
         
         if(Integer.parseInt(d[2])>65){
            String humidity = "Based off of humidity it is recommended to remove a layer";
+            extraFactors.add(humidity);
     }
         if((Integer.parseInt(d[4])> 3)&&(Integer.parseInt(d[2])<50)){
             String wind = "Based off of wind speed and temperature, it is recommended to add a layer";
+            extraFactors.add(wind);
     }
+        return extraFactors;
     }
     
     
