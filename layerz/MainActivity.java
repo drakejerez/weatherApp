@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 // Author: Drake Jerez
 // CNIT 25501 Final Project
@@ -86,7 +87,14 @@ public class MainActivity extends AppCompatActivity {
                     weatherGroup today = new weatherGroup(cityStr, stateStr, countryStr);
                     System.out.println(today.getGroup());
                     Recommendations reccy = new Recommendations();
-                    recClothes = reccy.recs(user, today);
+
+                    ArrayList addMe = clothesGroup.clothesEditor(today.getForecastNums());
+                    String toAdd = "";
+                    for(int i=0; i<addMe.size(); i++)
+                    {
+                        toAdd = toAdd + addMe.get(i);
+                    }
+                    recClothes = reccy.recs(user, today) + toAdd;
                 }
                 catch (IOException e)
                 {
@@ -96,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 catch (InterruptedException e)
                 {
                     System.err.println("Issue with connection!");
+                    e.printStackTrace();
                 }
                 
                 // show new window here
